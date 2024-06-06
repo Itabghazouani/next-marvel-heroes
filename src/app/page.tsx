@@ -19,7 +19,7 @@ const Home = async () => {
   const results = data.data.results
   console.log(results.find((item: any )=> item.id === 1010699 ))
   return (
-    <div>
+    <div className="mb-12">
       <Heroes heroes={results}/>
     </div>
   );
