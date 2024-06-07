@@ -1,4 +1,5 @@
 import Image from "next/image"
+import GoBackButton from "./GoBackButton"
 
 const API_KEY = process.env.API_KEY
 const HASH = process.env.HASH
@@ -22,6 +23,7 @@ const Hero = async ({ params }: IHeroProps) => {
 
   return (
     <div className="w-full">
+      <GoBackButton />
       <div className="p-4 md:pt-8 flex flex-col md:flex-row content-center max-w-6xl mx-auto md:space-x-6">
         <Image
           src={
