@@ -58,4 +58,4 @@ const Pagination = ({ page, totalPages }: IPaginationProps) => {
   )
 }
 
-export default Pagination;
+export default Pagination
