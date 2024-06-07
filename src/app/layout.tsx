@@ -6,7 +6,6 @@ import Providers from "./Providers";
 import { Suspense } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import SearchBar from "@/components/SearchBar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,6 +19,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
   return (
     <html lang="en">
       <body className={inter.className}>
@@ -28,7 +28,6 @@ export default function RootLayout({
           <Suspense>
             <Navbar />
           </Suspense>
-          <SearchBar />
           {children}
           <Footer />
         </Providers>

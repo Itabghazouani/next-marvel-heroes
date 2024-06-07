@@ -1,5 +1,6 @@
 import Heroes from "@/components/Heroes"
 import Pagination from "@/components/Pagination"
+import SearchBar from "@/components/SearchBar"
 
 const API_KEY = process.env.API_KEY
 const HASH = process.env.HASH
@@ -31,12 +32,17 @@ const Home = async ({ searchParams }: IHomeProps) => {
   const results = data.data.results
   const total = data.data.total
   const totalPages = Math.ceil(total / LIMIT)
-  console.log(data.data.results[0].events.items)
+
   return (
-    <div className="mb-12">
-      <Heroes heroes={results} />
-      <Pagination page={page} totalPages={totalPages}/>
-    </div>
+    <>
+      <SearchBar />
+      <div className="mb-12 pb-12">
+        <Heroes heroes={results} />
+        <div className="mt-8">
+          <Pagination page={page} totalPages={totalPages} />
+        </div>
+      </div >
+    </>
   )
 }
 

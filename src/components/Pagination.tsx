@@ -1,21 +1,21 @@
 "use client"
-import { useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation'
 
 interface IPaginationProps {
-  page: number;
-  totalPages: number;
+  page: number
+  totalPages: number
 }
 
 const Pagination = ({ page, totalPages }: IPaginationProps) => {
 
-  const router = useRouter();
+  const router = useRouter()
 
   const handlePageChange = (newPage: number) => {
-    const queryParams = new URLSearchParams(window.location.search);
-    queryParams.set('page', newPage.toString());
-    const newPath = `${window.location.pathname}?${queryParams.toString()}`;
-    router.push(newPath);
-  };
+    const queryParams = new URLSearchParams(window.location.search)
+    queryParams.set('page', newPage.toString())
+    const newPath = `${window.location.pathname}?${queryParams.toString()}`
+    router.push(newPath)
+  }
 
   return (
     <div className="flex justify-center items-center mt-8 space-x-2">
@@ -55,7 +55,7 @@ const Pagination = ({ page, totalPages }: IPaginationProps) => {
         </>
       )}
     </div>
-  );
-};
+  )
+}
 
 export default Pagination;

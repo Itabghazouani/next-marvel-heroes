@@ -12,9 +12,9 @@ const Hero = async ({ params }: IHeroProps) => {
 
   const heroId = params.id
 
-  const baseUrl = "https://gateway.marvel.com/v1/public/";
-  const apiKey = `ts=1&apikey=${API_KEY}&hash=${HASH}`;
-  const url = `${baseUrl}characters/${heroId}?${apiKey}`;
+  const baseUrl = "https://gateway.marvel.com/v1/public/"
+  const apiKey = `ts=1&apikey=${API_KEY}&hash=${HASH}`
+  const url = `${baseUrl}characters/${heroId}?${apiKey}`
 
   const res = await fetch(url)
   const data = await res.json()

@@ -1,5 +1,6 @@
 import Heroes from "@/components/Heroes"
 import Pagination from "@/components/Pagination"
+import SearchBar from "@/components/SearchBar"
 
 const API_KEY = process.env.API_KEY
 const HASH = process.env.HASH
@@ -18,13 +19,13 @@ const SearchPage = async ({ params, searchParams }: ISearchPageProps) => {
 
   const searchTerm = params.searchTerm
 
-  const baseUrl = "https://gateway.marvel.com/v1/public/";
-  const apiKey = `ts=1&apikey=${API_KEY}&hash=${HASH}`;
+  const baseUrl = "https://gateway.marvel.com/v1/public/"
+  const apiKey = `ts=1&apikey=${API_KEY}&hash=${HASH}`
 
   const page = searchParams.page ? searchParams.page : 1
   const offset = page > 1 ? (page - 1) * LIMIT : 0
 
-  const url = `${baseUrl}characters?nameStartsWith=${searchTerm}&limit=${LIMIT}&offset=${offset}&${apiKey}`;
+  const url = `${baseUrl}characters?nameStartsWith=${searchTerm}&limit=${LIMIT}&offset=${offset}&${apiKey}`
 
   const res = await fetch(url)
   const data = await res.json()
@@ -35,16 +36,19 @@ const SearchPage = async ({ params, searchParams }: ISearchPageProps) => {
   const totalPages = Math.ceil(total / LIMIT)
 
   return (
-    <div className="mb-12">
-      {results && results.length === 0 ? (
-        <h1 className="text-center pt-6">No results found </h1>
-      ) : (
-        <Heroes heroes={results} />
-      )}
-      {results && results.length > 0 && (
-        <Pagination page={page} totalPages={totalPages} />
-      )}
-    </div>
+    <>
+      <SearchBar />
+      <div className="mb-12">
+        {results && results.length === 0 ? (
+          <h1 className="text-center pt-6">No results found </h1>
+        ) : (
+          <Heroes heroes={results} />
+        )}
+        {results && results.length > 0 && (
+          <Pagination page={page} totalPages={totalPages} />
+        )}
+      </div>
+    </>
   )
 }
 
