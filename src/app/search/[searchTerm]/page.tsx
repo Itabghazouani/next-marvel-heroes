@@ -4,12 +4,14 @@ import Pagination from "@/components/Pagination"
 const API_KEY = process.env.API_KEY
 const HASH = process.env.HASH
 
+const LIMIT = 10
+
 interface ISearchPageProps {
   params: {
     searchTerm: string
   },
   searchParams: {
-    page?: string
+    page?: number
   }
 }
 const SearchPage = async ({ params, searchParams }: ISearchPageProps) => {
@@ -19,11 +21,10 @@ const SearchPage = async ({ params, searchParams }: ISearchPageProps) => {
   const baseUrl = "https://gateway.marvel.com/v1/public/";
   const apiKey = `ts=1&apikey=${API_KEY}&hash=${HASH}`;
 
-  const limit = 10
-  const page = searchParams.page ? parseInt(searchParams.page) : 1
-  const offset = page > 1 ? (page - 1) * limit : 0
+  const page = searchParams.page ? searchParams.page : 1
+  const offset = page > 1 ? (page - 1) * LIMIT : 0
 
-  const url = `${baseUrl}characters?nameStartsWith=${searchTerm}&limit=${limit}&offset=${offset}&${apiKey}`;
+  const url = `${baseUrl}characters?nameStartsWith=${searchTerm}&limit=${LIMIT}&offset=${offset}&${apiKey}`;
 
   const res = await fetch(url)
   const data = await res.json()
@@ -31,7 +32,7 @@ const SearchPage = async ({ params, searchParams }: ISearchPageProps) => {
   const results = data.data.results
   const total = data.data.total
   console.log(total)
-  const totalPages = Math.ceil(total / limit)
+  const totalPages = Math.ceil(total / LIMIT)
 
   return (
     <div className="mb-12">
